@@ -1,11 +1,12 @@
 import flet as ft
-from views.home import build as home_view
-from views.perfil import build as perfil_view
-from views.config import build as config_view
-from views.login_view import build as login_view    
+from views.login_view import build as login_view  
+from  views.empleado_view import build as empleado_view
+
+def empleado_view_builder(page):
+    return empleado_view(page, nombre_empleado="Administrador", on_logout=lambda: page.go("/"))
 
 def login_view_builder(page):
-    return login_view(page, lambda: page.go("/home"))
+    return login_view(page, lambda: page.go("/empleado"))
 
 def main(page: ft.Page):
     page.title = "App MVC-ish Flet"
@@ -14,11 +15,8 @@ def main(page: ft.Page):
 
     # Diccionario de rutas → función que construye la vista
     views = {
-        "/":        home_view,
-        "/home":    home_view,
-        "/perfil":  perfil_view,
-        "/config":  config_view,
-        "/login":   login_view_builder,
+        "/":  login_view_builder,
+        "/empleado": empleado_view_builder
     }
 
     def route_change(e):
@@ -26,7 +24,7 @@ def main(page: ft.Page):
         page.views.clear()
 
         # Obtenemos la función constructora o usamos home por defecto
-        view_builder = views.get(page.route, home_view)
+        view_builder = views.get(page.route, login_view_builder)
         page.views.append(view_builder(page))
 
         page.update()
