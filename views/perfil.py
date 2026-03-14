@@ -2,8 +2,8 @@ import flet as ft
 
 def build(page: ft.Page):
     return ft.View(
-        "/perfil",
-        [
+        route="/perfil",
+        controls=[
             ft.AppBar(title=ft.Text("Perfil"), center_title=True),
             ft.CircleAvatar(radius=50, bgcolor=ft.colors.BLUE_200),
             ft.Text("Ulises Ramírez", size=22),

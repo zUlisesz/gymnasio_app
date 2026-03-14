@@ -16,6 +16,11 @@ def build(page: ft.Page):
                 icon=ft.icons.SETTINGS,
                 on_click=lambda e: page.go("/config")
             ),
+            ft.ElevatedButton(
+                "Ir a Login",
+                icon=ft.icons.LOGIN,
+                on_click=lambda e: page.go("/login")
+            ),
             ft.Text(f"Ruta actual: {page.route}", size=12, color=ft.colors.GREEN_300),
         ],
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,

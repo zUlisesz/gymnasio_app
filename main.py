@@ -2,6 +2,10 @@ import flet as ft
 from views.home import build as home_view
 from views.perfil import build as perfil_view
 from views.config import build as config_view
+from views.login_view import build as login_view    
+
+def login_view_builder(page):
+    return login_view(page, lambda: page.go("/home"))
 
 def main(page: ft.Page):
     page.title = "App MVC-ish Flet"
@@ -14,6 +18,7 @@ def main(page: ft.Page):
         "/home":    home_view,
         "/perfil":  perfil_view,
         "/config":  config_view,
+        "/login":   login_view_builder,
     }
 
     def route_change(e):
